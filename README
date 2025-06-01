@@ -62,5 +62,12 @@ https://pris.ly/d/getting-started
 -----------------------------------------------------------
 
 
+npx prisma --help
+
+npx prisma migrate dev
+
+npx prisma generate
+
+npx prisma studio
 
 

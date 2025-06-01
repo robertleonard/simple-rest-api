@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { User, Task, Role } from "generated/prisma";
 
 // the service is dealing with the business logic:
 // - connecting to the database
