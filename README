@@ -71,3 +71,9 @@ npx prisma generate
 npx prisma studio
 
 
+
+### Install bcrypt
+npm i bcrypt
+npm i -D @types/bcrypt
+
+

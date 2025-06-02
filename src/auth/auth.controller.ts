@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 // Controller is dealing with the logic for the requests: post, get, etc
@@ -13,13 +13,23 @@ export class AuthController {
     constructor(private authService: AuthService) {}
     
     @Post('signup')
-    signup(@Body() dto : any) {
+    // use a Data Transfer Object to get the body from the http request 
+    signup(
+        @Body('username') username: string,
+        @Body('email') email: string, 
+        @Body('password') password: string,
+        @Body('role') role: string
+    ) {
 
         console.log({
-            dto,
+            username,
+            email,
+            password,
+            role
         });
 
-        return this.authService.signup()
+
+        return this.authService.signup(username, email, password, role);
     }
 
     @Post('signin')
