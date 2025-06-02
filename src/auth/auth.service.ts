@@ -1,8 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { User, Task, Role } from "generated/prisma";
-import { PrismaModule } from "src/prisma/prisma.module";
-import { PrismaService } from "src/prisma/prisma.service";
 import * as bcrypt from "bcrypt"
+import { UsersService } from "src/users/users.service";
 
 // the service is dealing with the business logic:
 // - connecting to the database
@@ -11,7 +9,7 @@ import * as bcrypt from "bcrypt"
 @Injectable({})
 export class AuthService {
 
-    constructor(private prismaService : PrismaService) {}
+    constructor(private userService : UsersService) {}
 
     async signup (username: string, email: string, password: string, role: string) {
 
@@ -20,7 +18,7 @@ export class AuthService {
         const hash = await bcrypt.hash(password, staltOrRounds);
 
         // save the new user in the Data Base
-        const user = await this.prismaService.user.create({
+        const user = await this.userService.user.create({
             data: {
                 username: username,
                 password: hash,
