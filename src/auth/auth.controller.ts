@@ -15,30 +15,32 @@ export class AuthController {
     @Post('signup')
     // use a Data Transfer Object to get the body from the http request 
     signup(
-        @Body('username') username: string,
-        @Body('email') email: string, 
-        @Body('password') password: string,
-        @Body('role') role: string
+        // @Body('username') username: string,
+        // @Body('email') email: string, 
+        // @Body('password') password: string,
+        // @Body('role') role: string
+        @Body() singUpDto
     ) {
 
-        console.log({
-            username,
-            email,
-            password,
-            role
-        });
+        // console.log({
+        //     singUpDto.username,
+        //     singUpDto.email,
+        //     singUpDto.password,
+        //     singUpDto.role
+        // });
 
 
-        return this.authService.signup(username, email, password, role);
+        return this.authService.signup(singUpDto.username, singUpDto.email, singUpDto.password, singUpDto.role);
     }
 
     @Post('signin')
     signin(
-        @Body('username') username: string,
-        @Body('email') email: string,
-        @Body('password') password: string
+        // @Body('username') username: string,
+        // @Body('email') email: string,
+        // @Body('password') password: string
+        @Body() signInDto
     ) {
-        return this.authService.signin(username, password);
+        return this.authService.signin(signInDto.username, signInDto.password);
     }
 
 }

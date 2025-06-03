@@ -71,9 +71,13 @@ npx prisma generate
 npx prisma studio
 
 
-
 ### Install bcrypt
 npm i bcrypt
 npm i -D @types/bcrypt
 
+
+
+### Install JWT
+
+npm install --save @nestjs/jwt
 
