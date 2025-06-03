@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import * as bcrypt from "bcrypt"
 import { UsersService } from "src/users/users.service";
 
@@ -30,7 +30,33 @@ export class AuthService {
         return {msg: 'I have signed up'}
     }
 
-    signin () {
+    async signin (loginUsername: string, loginPassword: string) {
+        console.log(loginUsername, loginPassword);
+        const user = await this.userService.user.findFirst({
+            where: {
+                username: loginUsername
+            }
+        });
+
+        // generate the password hash
+        // const staltOrRounds = 10;
+        // const loginHash = await bcrypt.hash(loginPassword, staltOrRounds);
+
+        // console.log(user?.password, loginHash);
+        //if (user?.password !== loginHash) {
+        if(user?.password)
+        {
+            if( !(await bcrypt.compare(loginPassword, user.password)) ) 
+            {
+                console.log('throw new UnauthorizedException()');
+                throw new UnauthorizedException();
+            }
+
+        }
+
+        // TODO: Generate a JWT and return it here
+        // instead of the user object
+
         return {msg: 'I have signed in'}
     }
 }

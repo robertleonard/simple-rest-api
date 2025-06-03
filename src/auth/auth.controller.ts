@@ -33,8 +33,12 @@ export class AuthController {
     }
 
     @Post('signin')
-    signin() {
-        return this.authService.signin()
+    signin(
+        @Body('username') username: string,
+        @Body('email') email: string,
+        @Body('password') password: string
+    ) {
+        return this.authService.signin(username, password);
     }
 
 }
