@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaClient } from 'generated/prisma';
+import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 
 @Injectable()
-export class UsersService extends PrismaClient {
+export class UsersService
+{
+    constructor(private prismaSqlService : PrismaSqlService) {}
 
-    constructor () {
-        super(
-            {
-                datasources: {
-                    db: {
-                        url: "postgresql://postgres:123@localhost:5434/nest?schema=public"
-                    }
-                }
+    async remove(id : string)
+    : Promise<{user}>
+    {
+
+        const user = await this.prismaSqlService.user.delete({
+            where : {
+                id: +id
             }
-        );
-    };
+        });
+
+        return {user};
+    }
+
 }

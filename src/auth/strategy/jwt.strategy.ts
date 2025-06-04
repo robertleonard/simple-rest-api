@@ -1,7 +1,7 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { UsersService } from 'src/users/users.service';
+import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 // import { Strategy } from "passport-local";
 
 
@@ -10,7 +10,7 @@ import { UsersService } from 'src/users/users.service';
 export class JwtStrategy extends PassportStrategy(Strategy) 
 {
     // Inject UsersService to get data about the user that is doing the GET Request
-    constructor(private userService: UsersService) 
+    constructor(private prismaSqlService: PrismaSqlService) 
     {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -34,7 +34,7 @@ export class JwtStrategy extends PassportStrategy(Strategy)
     {
         console.log({payload});
 
-        const userPromise = await this.userService.user.findUnique({
+        const userPromise = await this.prismaSqlService.user.findUnique({
             where: { id: payload.sub }
         });
         

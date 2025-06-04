@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import * as bcrypt from "bcrypt"
-import { UsersService } from "src/users/users.service";
 import { JwtService } from "@nestjs/jwt";
+import { PrismaSqlService } from "src/prisma-sql/prisma-sql.service";
 
 // the service is dealing with the business logic:
 // - connecting to the database
@@ -11,18 +11,19 @@ import { JwtService } from "@nestjs/jwt";
 export class AuthService {
 
     constructor(
-        private userService : UsersService,
+        private prismaSqlService : PrismaSqlService,
         private jwtService : JwtService
     ) {}
 
-    async signup (username: string, email: string, password: string, role: string) {
+    async signup (username: string, email: string, password: string, role: string) 
+    {
 
         // generate the password hash
         const staltOrRounds = 10;
         const hash = await bcrypt.hash(password, staltOrRounds);
 
         // save the new user in the Data Base
-        const user = await this.userService.user.create({
+        const user = await this.prismaSqlService.user.create({
             data: {
                 username: username,
                 password: hash,
@@ -37,11 +38,13 @@ export class AuthService {
     async signin (
         loginUsername: string, 
         loginPassword: string
-    ): Promise<{access_token: string}> {
+    )
+    : Promise<{access_token: string}> 
+    {
 
         
         console.log(loginUsername, loginPassword);
-        const user = await this.userService.user.findFirst({
+        const user = await this.prismaSqlService.user.findFirst({
             where: {
                 username: loginUsername
             }

@@ -1,10 +1,16 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { Request } from 'express';
+import { UsersService } from './users.service';
 
 @Controller('users')
-export class UsersController {
+export class UsersController 
+{
+
+    constructor(
+        private usersService : UsersService
+    ) {};
 
     @UseGuards(AuthGuard('jwt'))
     @Get('user')
@@ -15,6 +21,15 @@ export class UsersController {
     getUser(@Req() request: Request)
     {
         return request.user;
+    }
+
+
+
+    @Delete(':id')
+    remove(@Param('id') id: string)
+    {
+        const user = this.usersService.remove(id);
+        return user;
     }
 
 }
