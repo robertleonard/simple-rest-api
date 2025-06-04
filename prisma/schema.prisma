@@ -29,7 +29,7 @@ model Task {
   title       String
   description String?
   status      String
-  userId      String
+  userId      Int
 }
 
 // Role (id, name (de ex., 'user', 'admin')) - Opțional, poate fi un enum în entitatea User dacă este mai simplu inițial.

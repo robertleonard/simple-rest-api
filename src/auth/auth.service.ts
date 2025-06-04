@@ -15,7 +15,12 @@ export class AuthService {
         private jwtService : JwtService
     ) {}
 
-    async signup (username: string, email: string, password: string, role: string) 
+    async signup (
+        username:   string, 
+        email:      string, 
+        password:   string, 
+        role:       string
+    )
     {
 
         // generate the password hash

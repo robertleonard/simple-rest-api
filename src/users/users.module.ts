@@ -4,9 +4,9 @@ import { UsersController } from './users.controller';
 import { PrismaSqlModule } from 'src/prisma-sql/prisma-sql.module';
 
 @Module({
+  imports:      [PrismaSqlModule],
   providers:    [UsersService],
   exports:      [UsersService],
-  controllers:  [UsersController],
-  imports:      [PrismaSqlModule]
+  controllers:  [UsersController]
 })
 export class UsersModule {}
