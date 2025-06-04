@@ -30,7 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy)
     // } | null>
     // it returns a promise (because it is async) of user type from UserService (that connects to the prisma database)
     async validate(payload: {sub: number, email: string})
-    // // validate(payload: any)
+    // validate(payload: any)
     {
         console.log({payload});
 
@@ -45,12 +45,13 @@ export class JwtStrategy extends PassportStrategy(Strategy)
 
 
         return userPromise;
+        // return { userId: payload.sub, username: userPromise.username, role: userPromise.role };
     }
 
     // async validate(payload: any) 
     // {
     //     console.log('JWT payload:', payload);
     //     // Whatever you return here becomes req.user
-    //     return { userId: payload.sub, username: payload.username };
+    //     return { userId: payload.sub, username: payload.username, role: payload.role };
     // }
 }

@@ -1,9 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/guard';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
+import { RolesGuard } from 'src/auth/guard/roles.guard';
+import { Roles } from 'src/auth/decorator/roles.decorator';
+import { Role } from 'src/auth/enum/roles.enum';
+import { CanEditTask } from './decorators/can-edit-task.decorator';
+import { CanEditTaskGuard } from './guards/can-edit-task.guard';
 // import { Task } from 'generated/prisma';
 
 @Controller('tasks')
@@ -32,8 +37,10 @@ export class TasksController
 
     
     @Patch('update/:id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, /*RolesGuard,*/ CanEditTaskGuard)
     @UsePipes(new ValidationPipe())
+    // @Roles(Role.Admin) // ✅ Only admin role can access
+    @CanEditTask()
     async updateTask(
         @Param('id') taskId: string,
         @Request() request,
