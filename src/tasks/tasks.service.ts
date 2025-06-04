@@ -31,8 +31,7 @@ export class TasksService
         id          : number,
         title       : string, 
         description : string, 
-        status      : string, 
-        userId      : string
+        status      : string
     )
     {
         const task = await this.prismaSqlService.task.update(
@@ -43,12 +42,26 @@ export class TasksService
                 data: {
                     title:          title,
                     description:    description,
-                    status:         status,
-                    // userId:         +userId
+                    status:         status
                 }
             }
         )
         return {msg: "task updated"}
+    }
+
+    async getUserIdForTask(
+        taskId: number
+    )
+    {
+        const task = await this.prismaSqlService.task.findUnique(
+            {
+                where: {
+                    id: taskId
+                }
+            }
+        );
+        const userId = task?.userId;
+        return userId;
     }
 
     async removeTask(

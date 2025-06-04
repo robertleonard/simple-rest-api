@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from 'src/auth/guard';
+// import { Task } from 'generated/prisma';
 
 @Controller('tasks')
 export class TasksController 
@@ -8,49 +10,69 @@ export class TasksController
     constructor(private tasksService : TasksService) {};
 
 
+    // @UseGuards(AuthGuard('jwt'))
     @Post('create')
+    @UseGuards(JwtAuthGuard)
+    
     // use a Data Transfer Object to get the body from the http request 
     createTask(
-        // @Body('username') username: string,
-        // @Body('email') email: string, 
-        // @Body('password') password: string,
-        // @Body('role') role: string
-        @Body() taskDto
+        @Request() request,
+        @Body() body
     ) 
     {
-        console.log(taskDto)
+        console.log( { body: body }) 
+        console.log( { user: request.user})
 
-        // console.log({
-        //     singUpDto.username,
-        //     singUpDto.email,
-        //     singUpDto.password,
-        //     singUpDto.role
-        // });
-
-
-        return this.tasksService.createTask(taskDto.title, taskDto.description, taskDto.status, taskDto.userId);
+        if (body.title && body.status) {
+            return this.tasksService.createTask(body.title, body.description ? body.description  : "", body.status, request.user.id);
+        }
+        else {
+            return {error: "Please fill the task data"}
+        }
+        
     }
 
+    
     @Patch('update/:id')
-    updateTask(@Param('id') id: string, @Body() taskDto)
+    @UseGuards(JwtAuthGuard)
+    async updateTask(
+        @Param('id') taskId: string,
+        @Request() request,
+        @Body() body
+    )
     {
-        console.log(id)
-        console.log(taskDto)
-        // if(taskDto.userId == "id that comes with the token for not admin basic users")
-        // {
-            return this.tasksService.updateTask(+id, taskDto.title, taskDto.description, taskDto.status, taskDto.userId);
-        // }
-        // else
-        // {
-        //     console.log('throw new UnauthorizedException()');
-        //     throw new UnauthorizedException(); 
-        // }
+        console.log(taskId)
+        console.log( { user: request.user})
+        console.log(body)
+        if(request.user.role == 'user')
+        {
+            // The authenticated user id is the same with the userId of the task with taskId
+            const taskUserId = await this.tasksService.getUserIdForTask(+taskId)
+            console.log(request.user.id)
+            console.log(taskUserId)
+            if(request.user.id == taskUserId)
+            {
+                return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
+            }
+            else
+            {
+                console.log('throw new UnauthorizedException()');
+                throw new UnauthorizedException(); 
+            }
+        }
+        else
+        {
+            return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
+        }
+
     }
 
+    
     @Delete('remove_for_user')
-    removeTasks(@Body() taskDto)
+    @UseGuards(JwtAuthGuard)
+    removeTasks(@Body() body)
     {
-        console.log(taskDto)
+        console.log(body)
 
         // bla bla bla it looks like it is matching the first delete when I send the delete request from insomnia
         // TODO: vezi care-i jmenu, trebuie sa excluzi endpointul de la match-ul primului delete sau e alta skema
@@ -59,29 +81,35 @@ export class TasksController
     }
 
 
+    
     @Delete(':id')
-    removeTask(@Param('id') id: string/*, @Body() taskDto*/)
+    @UseGuards(JwtAuthGuard)
+    removeTask(@Param('id') id: string, @Body() body)
     {
         console.log(id)
-        // console.log(taskDto)
+        console.log(body)
 
         return this.tasksService.removeTask(+id)
     }
 
 
+    
     @Get("task-list")
-    getTaskListForUser(@Body() taskDto)
+    @UseGuards(JwtAuthGuard)
+    getTaskListForUser(@Body() body)
     {
-        console.log(taskDto)
+        console.log(body)
 
-        return this.tasksService.getTaskListForUser(taskDto.userId)
+        return this.tasksService.getTaskListForUser(body.userId)
     }
 
+    
     @Get(':id')
-    getTask(@Param('id') id : string, @Body() taskDto)
+    @UseGuards(JwtAuthGuard)
+    getTask(@Param('id') id : string, @Body() body)
     {
         console.log(id)
-        console.log(taskDto)
+        console.log(body)
 
         return this.tasksService.getTaskById(id)
     }

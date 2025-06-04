@@ -30,13 +30,14 @@ export class JwtStrategy extends PassportStrategy(Strategy)
     // } | null>
     // it returns a promise (because it is async) of user type from UserService (that connects to the prisma database)
     async validate(payload: {sub: number, email: string})
-    // validate(payload: any)
+    // // validate(payload: any)
     {
         console.log({payload});
 
         const userPromise = await this.prismaSqlService.user.findUnique({
             where: { id: payload.sub }
         });
+        console.log({userPromise});
         
         // !!!
         // TODO: make this work - it gives the error: The operand of a 'delete' operator must be optional.ts(2790) 
@@ -45,4 +46,11 @@ export class JwtStrategy extends PassportStrategy(Strategy)
 
         return userPromise;
     }
+
+    // async validate(payload: any) 
+    // {
+    //     console.log('JWT payload:', payload);
+    //     // Whatever you return here becomes req.user
+    //     return { userId: payload.sub, username: payload.username };
+    // }
 }

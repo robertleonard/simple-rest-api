@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 import { Request } from 'express';
@@ -18,8 +18,9 @@ export class UsersController
     // {
     //     return 'user info';
     // }
-    getUser(@Req() request: Request)
+    getUser(@Req() request: Request, @Body() taskDto)
     {
+        console.log(taskDto) 
         return request.user;
     }
 
