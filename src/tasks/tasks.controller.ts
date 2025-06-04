@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UnauthorizedException, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/guard';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { UpdateTaskDto } from './dto/update-task.dto';
 // import { Task } from 'generated/prisma';
 
 @Controller('tasks')
@@ -13,32 +15,30 @@ export class TasksController
     // @UseGuards(AuthGuard('jwt'))
     @Post('create')
     @UseGuards(JwtAuthGuard)
-    
+    @UsePipes(new ValidationPipe())
     // use a Data Transfer Object to get the body from the http request 
     createTask(
         @Request() request,
-        @Body() body
-    ) 
+        // @Body() body
+        @Body() body: CreateTaskDto
+    )
     {
         console.log( { body: body }) 
         console.log( { user: request.user})
 
-        if (body.title && body.status) {
-            return this.tasksService.createTask(body.title, body.description ? body.description  : "", body.status, request.user.id);
-        }
-        else {
-            return {error: "Please fill the task data"}
-        }
+        return this.tasksService.createTask(body.title, body.description ? body.description  : "", body.status, request.user.id);
         
     }
 
     
     @Patch('update/:id')
     @UseGuards(JwtAuthGuard)
+    @UsePipes(new ValidationPipe())
     async updateTask(
         @Param('id') taskId: string,
         @Request() request,
-        @Body() body
+        // @Body() body
+        @Body() body : UpdateTaskDto
     )
     {
         console.log(taskId)
@@ -70,7 +70,10 @@ export class TasksController
     
     @Delete('remove_for_user')
     @UseGuards(JwtAuthGuard)
-    removeTasks(@Body() body)
+    @UsePipes(new ValidationPipe())
+    removeTasks(
+        @Body() body
+    )
     {
         console.log(body)
 
@@ -84,12 +87,13 @@ export class TasksController
     
     @Delete(':id')
     @UseGuards(JwtAuthGuard)
-    removeTask(@Param('id') id: string, @Body() body)
+    removeTask(
+        @Param('id') taskId: string
+    )
     {
-        console.log(id)
-        console.log(body)
+        console.log(taskId)
 
-        return this.tasksService.removeTask(+id)
+        return this.tasksService.removeTask(+taskId)
     }
 
 
@@ -106,12 +110,11 @@ export class TasksController
     
     @Get(':id')
     @UseGuards(JwtAuthGuard)
-    getTask(@Param('id') id : string, @Body() body)
+    getTask(@Param('id') taskId)
     {
-        console.log(id)
-        console.log(body)
+        console.log(taskId)
 
-        return this.tasksService.getTaskById(id)
+        return this.tasksService.getTaskById(taskId)
     }
 
 

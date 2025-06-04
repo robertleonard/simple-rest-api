@@ -28,10 +28,10 @@ export class TasksService
     }
 
     async updateTask(
-        id          : number,
-        title       : string, 
-        description : string, 
-        status      : string
+    id               : number,
+        title?       : string, 
+        description? : string, 
+        status?      : string
     )
     {
         const task = await this.prismaSqlService.task.update(
