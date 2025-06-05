@@ -16,7 +16,15 @@
 npm install
 ```
 
-## At first
+## Prerequisites
+
+Install Docker
+
+```bash
+# Example on Linux (debian)
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 Make sure you are in the root of the project
 
 
