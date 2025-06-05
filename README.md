@@ -45,6 +45,12 @@ CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS       
 5a64aaa20943   postgres:13   "docker-entrypoint.s…"   3 days ago   Up 12 hours   0.0.0.0:5434->5432/tcp, [::]:5434->5432/tcp   simple-rest-api-dev-db-1
 ```
 
+## Run database migrations
+
+```bash
+npx prisma migrate dev
+```
+
 ## Ho to run
 
 ```bash
