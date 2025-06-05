@@ -6,17 +6,34 @@ export class UsersService
 {
     constructor(private prismaSqlService : PrismaSqlService) {}
 
-    async remove(id : string)
-    : Promise<{user}>
+    async getUserById(id : string)
     {
+        const user = await this.prismaSqlService.user.findUnique(
+            {
+                where : {
+                    id: +id
+                }
+            }
+        )
+        console.log({user: user})
+        return user;
+    }
 
+    async removeUserById(id : string)
+    {
         const user = await this.prismaSqlService.user.delete({
             where : {
                 id: +id
             }
         });
 
-        return {user};
+        return user;
+    }
+
+    async getAllUsers()
+    {
+        const users = await this.prismaSqlService.user.findMany()
+        return users;
     }
 
 }

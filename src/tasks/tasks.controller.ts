@@ -41,7 +41,6 @@ export class TasksController
     @Patch('update/:id')
     @UseGuards(JwtAuthGuard, /*RolesGuard,*/ CanEditTaskGuard)
     @UsePipes(new ValidationPipe())
-    // @Roles(Role.Admin) // ✅ Only admin role can access
     @CanEditTask()
     async updateTask(
         @Param('id') taskId: string,
@@ -88,7 +87,7 @@ export class TasksController
     }
 
 
-    
+    // GET TASK LIST
     @Get("task-list")
     @UseGuards(JwtAuthGuard, CanGetTaskListGuard)
     @CanGetTaskList()
@@ -109,7 +108,9 @@ export class TasksController
         return this.tasksService.getTaskListForUser(body.userId)
     }
 
-    
+    // GET TASK
+    // - Admin can get any task
+    // - User can only get a task with the same userId (he owns) 
     @Get(':id')
     @UseGuards(JwtAuthGuard, CanEditTaskGuard)
     @CanEditTask()
