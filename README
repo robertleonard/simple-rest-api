@@ -89,3 +89,5 @@ npm install --save-dev @types/passport-jwt
 ### Install validator class
 npm install class-validator class-transformer
 
+### Install swagger
+npm install --save @nestjs/swagger

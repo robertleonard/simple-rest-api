@@ -22,7 +22,6 @@ export class AuthService {
         role:       string
     )
     {
-
         // generate the password hash
         const staltOrRounds = 10;
         const hash = await bcrypt.hash(password, staltOrRounds);
@@ -55,12 +54,6 @@ export class AuthService {
             }
         });
 
-        // generate the password hash
-        // const staltOrRounds = 10;
-        // const loginHash = await bcrypt.hash(loginPassword, staltOrRounds);
-
-        // console.log(user?.password, loginHash);
-        //if (user?.password !== loginHash) {
         if(user?.password)
         {
             if( !(await bcrypt.compare(loginPassword, user.password)) ) 
@@ -68,7 +61,6 @@ export class AuthService {
                 console.log('throw new UnauthorizedException()');
                 throw new UnauthorizedException();
             }
-            
         }
         else
         {
