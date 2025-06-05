@@ -8,12 +8,7 @@ import { PrismaSqlModule } from 'src/prisma-sql/prisma-sql.module';
 @Module({
     imports:        [
                         PrismaSqlModule, 
-                        JwtModule.register({
-                            global:         true,
-                            secret:         "DO NOT USE THIS VALUE. INSTEAD, CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.",
-                            // secret:         JWT_SECRET,
-                            signOptions:    {expiresIn: '4h'}
-                        })
+                        JwtModule.register({})
                     ],
     controllers:    [AuthController],
     providers:      [AuthService, JwtStrategy],

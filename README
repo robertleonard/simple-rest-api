@@ -91,3 +91,6 @@ npm install class-validator class-transformer
 
 ### Install swagger
 npm install --save @nestjs/swagger
+
+### Add nestjs config
+npm install --save @nestjs/config

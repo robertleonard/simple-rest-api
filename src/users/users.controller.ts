@@ -14,10 +14,6 @@ export class UsersController
 
     @UseGuards(AuthGuard('jwt'))
     @Get('user')
-    // getUser() 
-    // {
-    //     return 'user info';
-    // }
     getUser(@Req() request: Request, @Body() taskDto)
     {
         console.log(taskDto) 

@@ -1,0 +1,435 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1748807053946
+  modified: 1748807053946
+collection:
+  - url: http://localhost:3000/auth/signup
+    name: sign up
+    meta:
+      id: req_f0ab9b86602d4dbaa1f548303251c77c
+      created: 1748807091110
+      modified: 1749135362001
+      isPrivate: false
+      sortKey: -1748807091110
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_91569b347f46497d9ac1f39b2883d6a5
+          name: username
+          value: robert.adminu.4
+          disabled: false
+        - id: pair_52ae1e04f10842cfa5b5d244a54f1549
+          name: email
+          value: leon.adminu.4@gmail.com
+          disabled: false
+        - id: pair_26d23355eba7459c85b9aaeaf037be08
+          name: password
+          value: Parola123@
+          disabled: false
+        - id: pair_2ce715c408854e41b7095e5ca02719a3
+          name: role
+          value: admin
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/auth/signin
+    name: sign in
+    meta:
+      id: req_f20f53cac63a46f8a5e48a9adf6075a8
+      created: 1748807243052
+      modified: 1749066549413
+      isPrivate: false
+      sortKey: -1748892321559
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_2b9c86a1d83e452dba09e3a7687db755
+          name: username
+          value: robert.leon.3
+          disabled: false
+        - id: pair_56f81175d01c4d18a8d458f6e46d2f51
+          name: password
+          value: Parola123@
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/user
+    name: get user
+    meta:
+      id: req_f585f2ba2d2b476f9b02a514036c932d
+      created: 1748977400066
+      modified: 1749064254661
+      isPrivate: false
+      sortKey: -1748977400066
+    method: GET
+    headers:
+      - id: pair_a26e1b90fea8499e965c00b3e8e6ba93
+        name: Content-Type
+        value: application/x-www-form-urlencoded
+        disabled: false
+      - id: pair_a5585385dd824c3f8ee9856985888cf9
+        name: Authorization
+        value: "Bearer "
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/create
+    name: create task
+    meta:
+      id: req_ee0f8f557e7e4493acd03e063c4335c2
+      created: 1749049721336
+      modified: 1749072966625
+      isPrivate: false
+      sortKey: -1749049721336
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_79c104626f064e61a420c73d7b79dd41
+          name: title
+          value: clean the windows
+          disabled: false
+        - id: pair_084667ca84ab4507801ab071dec2784c
+          name: description
+          value: clean the windows so the view will be better
+          disabled: false
+        - id: pair_6ea08e9122ab41a59b25234d340448ae
+          name: status
+          value: in-progress
+          disabled: false
+        - id: pair_b21c51adb6264656ade7f99b1471d870
+          name: userId
+          value: "4"
+          disabled: true
+    headers:
+      - id: pair_938a3b5cc452461388fbdf0cf16caba6
+        name: Content-Type
+        value: application/x-www-form-urlencoded
+        disabled: false
+      - id: pair_69374f0f6d81442f91fd6b03a55508b3
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/update/10
+    name: update task jerman
+    meta:
+      id: req_9613ec29162047eb86db77d547bde850
+      created: 1749050144937
+      modified: 1749129360268
+      isPrivate: false
+      sortKey: -1749050144937
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_53d90b490a5c467aa783abf678c73013
+          name: id
+          value: "1"
+          disabled: true
+        - id: pair_44253790c60345dd985867357d846f30
+          name: title
+          value: clin za windowz
+          disabled: false
+        - id: pair_e4b6d5ead99d4c4b9cecefe846cf7a8e
+          name: description
+          value: clin za windowz so za veew will vee braizar
+          disabled: false
+        - id: pair_65ad39cff5b346dca142fb890030c1bb
+          name: status
+          value: todo
+          disabled: false
+        - id: pair_cfeaaca9f5b34337b4542ad22a2472e4
+          name: userId
+          value: "8"
+          disabled: true
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_7f5ed9d86a684da0a80a4031fcc65d3c
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_8a13243ad01442a1a8d2caced85aae7a
+      - id: pair_d44393dd11964bc7bb8ae19053211d01
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/update/10
+    name: update task englij
+    meta:
+      id: req_29776266703e4cbf9a611dea851d9019
+      created: 1749050385292
+      modified: 1749131615011
+      isPrivate: false
+      sortKey: -1749050385292
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_83e0823a98284231bd9fd12e54264b99
+          name: id
+          value: "100"
+          disabled: true
+        - id: pair_1f04a5ce9dac4a6bb81cdc0b76bf05a3
+          name: title
+          value: clean the windows
+          disabled: false
+        - id: pair_e03e57010b054cae927cc1a7e675ff06
+          name: description
+          value: clean the windows so the view will be better
+          disabled: false
+        - id: pair_88680c7d22a24573a50c25bc5d2fc53a
+          name: status
+          value: todo
+          disabled: false
+        - id: pair_3832a6706c78491999c95936677bca83
+          name: userId
+          value: "4"
+          disabled: true
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_b74ba834a193493aa04bad4ee496cff0
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_a54a97fe837540ee874d2d846b9a7a39
+      - id: pair_f23d6641267049f8b53e8d2727a3e448
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/7
+    name: delete task
+    meta:
+      id: req_61e48e9d80c643229cd801600e262b13
+      created: 1749052008442
+      modified: 1749072008580
+      isPrivate: false
+      sortKey: -1749052008442
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_5253df6e603a4f3ba843c349a3a7efb5
+      - id: pair_f0627523a4b7442499096bb34c6a126c
+        name: Content-Type
+        value: application/x-www-form-urlencoded
+        disabled: false
+      - id: pair_27ffb200c8184bb2b341ce8e9e26d4ef
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/remove_for_user
+    name: delete tasks for user
+    meta:
+      id: req_cfa483ee843d4669b4fb45a1153955f4
+      created: 1749052221919
+      modified: 1749072022282
+      isPrivate: false
+      sortKey: -1749052221919
+    method: DELETE
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_e1912b0c654b40dc9b1887e9cf150311
+          name: userId
+          value: "4"
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_c388f321a1b2473386753361dfc8823f
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_ebbfabcfa5ef4fb0879f9b7206f55095
+      - id: pair_51f0520458d2403c9feeaae4d73c4e04
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/10
+    name: get task
+    meta:
+      id: req_75382306f24548d9b77f73606a2d0f6a
+      created: 1749053638222
+      modified: 1749129692256
+      isPrivate: false
+      sortKey: -1749053638222
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_3ec0e135646b43dd99cdb845e173ae03
+      - id: pair_e139bce175b54a17b1dfd080af40d42f
+        name: Content-Type
+        value: application/x-www-form-urlencoded
+        disabled: false
+      - id: pair_eea930e421f74c709eadb6c98fd538f3
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/task-list
+    name: get tasks for user
+    meta:
+      id: req_be6cd66435f842f9ab5e9b7754686e3a
+      created: 1749053657410
+      modified: 1749131839562
+      isPrivate: false
+      sortKey: -1749053657410
+    method: GET
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_c844e68199d34960af5a28f606ec0805
+          name: userId
+          value: "10"
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_bd2f43ccd08f4ab5acb93944141eb314
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_963ec845dfc14608a9e5164b749d2f0b
+      - id: pair_4321c7daa60a4aba9076a697eb94f1fc
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/auth/signin
+    name: sign in admin
+    meta:
+      id: req_be4bb20894ef458096b7ffe2152bbca7
+      created: 1749066558199
+      modified: 1749135385058
+      isPrivate: false
+      sortKey: -1748849706334.5
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_648ea9a4a979414d86c75ce3ed435682
+          name: username
+          value: robert.adminu.4
+          disabled: false
+        - id: pair_178d2e77fc6946548b885f40e11b06cd
+          name: password
+          value: Parola123@
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+      - name: User-Agent
+        value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1748807081301
+    modified: 1748807081301
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1748807081299
+    modified: 1748807081299
+    isPrivate: false

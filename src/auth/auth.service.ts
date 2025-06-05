@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import * as bcrypt from "bcrypt"
 import { JwtService } from "@nestjs/jwt";
 import { PrismaSqlService } from "src/prisma-sql/prisma-sql.service";
+import { ConfigService } from "@nestjs/config";
 
 // the service is dealing with the business logic:
 // - connecting to the database
@@ -11,8 +12,9 @@ import { PrismaSqlService } from "src/prisma-sql/prisma-sql.service";
 export class AuthService {
 
     constructor(
-        private prismaSqlService : PrismaSqlService,
-        private jwtService : JwtService
+        private prismaSqlService    : PrismaSqlService,
+        private jwtService          : JwtService,
+        private configService       : ConfigService
     ) {}
 
     async signup (
@@ -67,8 +69,23 @@ export class AuthService {
             throw new UnauthorizedException();
         }
 
-
-        const payload = {sub: user.id, username: user.username};
-        return { access_token: await this.jwtService.signAsync(payload) };
+        return {access_token: await this.signToken(user.id, user.username)};
     }
+
+    async signToken(userId: number, username: string) : Promise<string>
+    {
+        const payload = {
+            sub: userId,
+            username
+        }
+
+        return this.jwtService.signAsync(
+            payload,
+            {
+                expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
+                secret: this.configService.get('JWT_SECRET')
+            }
+        )
+    }
+
 }

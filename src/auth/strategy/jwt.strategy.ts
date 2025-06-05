@@ -2,6 +2,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
+import { ConfigService } from '@nestjs/config';
 // import { Strategy } from "passport-local";
 
 
@@ -10,12 +11,14 @@ import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 export class JwtStrategy extends PassportStrategy(Strategy) 
 {
     // Inject UsersService to get data about the user that is doing the GET Request
-    constructor(private prismaSqlService: PrismaSqlService) 
+    constructor(private prismaSqlService: PrismaSqlService, private configService: ConfigService)
     {
+        const jwtSecret = configService.get('JWT_SECRET');
+        console.log(jwtSecret)
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             ignoreExpiration: false,
-            secretOrKey: "DO NOT USE THIS VALUE. INSTEAD, CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.",
+            secretOrKey: jwtSecret
         })
     }
 
