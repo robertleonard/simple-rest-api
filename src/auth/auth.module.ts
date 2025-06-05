@@ -12,7 +12,7 @@ import { PrismaSqlModule } from 'src/prisma-sql/prisma-sql.module';
                             global:         true,
                             secret:         "DO NOT USE THIS VALUE. INSTEAD, CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.",
                             // secret:         JWT_SECRET,
-                            signOptions:    {expiresIn: '60m'}
+                            signOptions:    {expiresIn: '4h'}
                         })
                     ],
     controllers:    [AuthController],

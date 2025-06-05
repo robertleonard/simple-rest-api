@@ -2,6 +2,7 @@ import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@
 import { Reflector } from '@nestjs/core';
 import { CAN_EDIT_TASK } from '../decorators/can-edit-task.decorator';
 import { TasksService } from '../tasks.service';
+import { Role } from 'src/auth/enum';
 
 @Injectable()
 export class CanEditTaskGuard implements CanActivate {
@@ -27,7 +28,7 @@ export class CanEditTaskGuard implements CanActivate {
     if (!taskOwnerId) throw new ForbiddenException('Task not found');
 
     // Admins can edit everything
-    if (user.role === 'admin') return true;
+    if (user.role === Role.Admin) return true;
 
     // Only owner can edit
     console.log(taskOwnerId, user.id)

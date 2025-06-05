@@ -9,6 +9,8 @@ import { Roles } from 'src/auth/decorator/roles.decorator';
 import { Role } from 'src/auth/enum/roles.enum';
 import { CanEditTask } from './decorators/can-edit-task.decorator';
 import { CanEditTaskGuard } from './guards/can-edit-task.guard';
+import { CanGetTaskListGuard } from './guards/can-get-task-list.guard';
+import { CanGetTaskList } from './decorators/can-get-task-list.decorator';
 // import { Task } from 'generated/prisma';
 
 @Controller('tasks')
@@ -51,49 +53,31 @@ export class TasksController
         console.log(taskId)
         console.log( { user: request.user})
         console.log(body)
-        if(request.user.role == 'user')
-        {
-            // The authenticated user id is the same with the userId of the task with taskId
-            const taskUserId = await this.tasksService.getUserIdForTask(+taskId)
-            console.log(request.user.id)
-            console.log(taskUserId)
-            if(request.user.id == taskUserId)
-            {
-                return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
-            }
-            else
-            {
-                console.log('throw new UnauthorizedException()');
-                throw new UnauthorizedException(); 
-            }
-        }
-        else
-        {
-            return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
-        }
 
+        return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
     }
 
     
-    @Delete('remove_for_user')
-    @UseGuards(JwtAuthGuard)
-    @UsePipes(new ValidationPipe())
-    removeTasks(
-        @Body() body
-    )
-    {
-        console.log(body)
+    // @Delete('remove_for_user')
+    // @UseGuards(JwtAuthGuard)
+    // @UsePipes(new ValidationPipe())
+    // removeTasks(
+    //     @Body() body
+    // )
+    // {
+    //     console.log(body)
 
-        // bla bla bla it looks like it is matching the first delete when I send the delete request from insomnia
-        // TODO: vezi care-i jmenu, trebuie sa excluzi endpointul de la match-ul primului delete sau e alta skema
-        // pare ca e ok sa il pun p-asta inaintea aluia cu :id 
-        // TODO: !!! please check this
-    }
+    //     // bla bla bla it looks like it is matching the first delete when I send the delete request from insomnia
+    //     // TODO: vezi care-i jmenu, trebuie sa excluzi endpointul de la match-ul primului delete sau e alta skema
+    //     // pare ca e ok sa il pun p-asta inaintea aluia cu :id 
+    //     // TODO: !!! please check this
+    // }
 
 
     
     @Delete(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, CanEditTaskGuard)
+    @CanEditTask()
     removeTask(
         @Param('id') taskId: string
     )
@@ -106,17 +90,29 @@ export class TasksController
 
     
     @Get("task-list")
-    @UseGuards(JwtAuthGuard)
-    getTaskListForUser(@Body() body)
+    @UseGuards(JwtAuthGuard, CanGetTaskListGuard)
+    @CanGetTaskList()
+    getTaskListForUser(
+        @Request()  request,
+        @Body()     body)
     {
+        console.log("getTaskListForUser")
+        console.log( { user: request.user})
         console.log(body)
 
+        if (request.user.role == Role.User)
+        {
+            // get list of tasks that owns
+            return this.tasksService.getTaskListForUser(request.user.id)
+        }
+        // get list of tasks for specified user id
         return this.tasksService.getTaskListForUser(body.userId)
     }
 
     
     @Get(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, CanEditTaskGuard)
+    @CanEditTask()
     getTask(@Param('id') taskId)
     {
         console.log(taskId)
