@@ -79,12 +79,12 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: http://localhost:3000/users/user
+  - url: http://localhost:3000/users/user/3
     name: get user
     meta:
       id: req_f585f2ba2d2b476f9b02a514036c932d
       created: 1748977400066
-      modified: 1749064254661
+      modified: 1749153294322
       isPrivate: false
       sortKey: -1748977400066
     method: GET
@@ -93,9 +93,10 @@ collection:
         name: Content-Type
         value: application/x-www-form-urlencoded
         disabled: false
-      - id: pair_a5585385dd824c3f8ee9856985888cf9
+      - id: pair_ff8156d752a241d1b32070b6b875a971
         name: Authorization
-        value: "Bearer "
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MDkyNiwiZXhwIjoxNzQ5MTY1MzI2fQ.8NwLahWwvl585ZiWSDTpchf0qN10C9HdFeejVR_cqIE
         disabled: false
     settings:
       renderRequestBody: true
@@ -152,11 +153,11 @@ collection:
         store: true
       rebuildPath: true
   - url: http://localhost:3000/tasks/update/10
-    name: update task jerman
+    name: update task to jerman
     meta:
       id: req_9613ec29162047eb86db77d547bde850
       created: 1749050144937
-      modified: 1749129360268
+      modified: 1749151702267
       isPrivate: false
       sortKey: -1749050144937
     method: PATCH
@@ -193,7 +194,7 @@ collection:
       - id: pair_d44393dd11964bc7bb8ae19053211d01
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
         disabled: false
     settings:
       renderRequestBody: true
@@ -204,11 +205,11 @@ collection:
         store: true
       rebuildPath: true
   - url: http://localhost:3000/tasks/update/10
-    name: update task englij
+    name: update task to englij
     meta:
       id: req_29776266703e4cbf9a611dea851d9019
       created: 1749050385292
-      modified: 1749131615011
+      modified: 1749151694637
       isPrivate: false
       sortKey: -1749050385292
     method: PATCH
@@ -245,7 +246,7 @@ collection:
       - id: pair_f23d6641267049f8b53e8d2727a3e448
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
         disabled: false
     settings:
       renderRequestBody: true
@@ -326,7 +327,7 @@ collection:
     meta:
       id: req_75382306f24548d9b77f73606a2d0f6a
       created: 1749053638222
-      modified: 1749129692256
+      modified: 1749146004087
       isPrivate: false
       sortKey: -1749053638222
     method: GET
@@ -341,7 +342,7 @@ collection:
       - id: pair_eea930e421f74c709eadb6c98fd538f3
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NTk3NiwiZXhwIjoxNzQ5MTYwMzc2fQ.JnmG8hAYwDM0laPyz4WdfX9c3E2iO7GVkrKWE3_NHok
         disabled: false
     settings:
       renderRequestBody: true
@@ -356,7 +357,7 @@ collection:
     meta:
       id: req_be6cd66435f842f9ab5e9b7754686e3a
       created: 1749053657410
-      modified: 1749131839562
+      modified: 1749147316164
       isPrivate: false
       sortKey: -1749053657410
     method: GET
@@ -377,7 +378,7 @@ collection:
       - id: pair_4321c7daa60a4aba9076a697eb94f1fc
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTEyOTExOSwiZXhwIjoxNzQ5MTQzNTE5fQ.22vYeibShLALPAuXFsT4q2D_jkkEgykZDYOyZtXcYoc
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NzMwMiwiZXhwIjoxNzQ5MTYxNzAyfQ.09tlHuBpn8Jz8R4VGgPm-i-8LN1HzrncdSR3Dvoh-G8
         disabled: false
     settings:
       renderRequestBody: true
@@ -412,6 +413,147 @@ collection:
         value: application/x-www-form-urlencoded
       - name: User-Agent
         value: insomnia/11.1.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/3
+    name: delete user
+    meta:
+      id: req_40fafa19d3ac48679bbed77e55c04e96
+      created: 1749148272776
+      modified: 1749148311735
+      isPrivate: false
+      sortKey: -1748934860812.5
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_a8e5afb3a9c54782a02ba8ce764a7ec8
+      - id: pair_74db7a471fed40a0b6624768cff9bde8
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NzMwMiwiZXhwIjoxNzQ5MTYxNzAyfQ.09tlHuBpn8Jz8R4VGgPm-i-8LN1HzrncdSR3Dvoh-G8
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/update/10
+    name: update task to greek - Admin
+    meta:
+      id: req_ed6b360eba964194a1fd688fa95359e8
+      created: 1749151270508
+      modified: 1749151636579
+      isPrivate: false
+      sortKey: -1749049933136.5
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_7a6623029fcf48ba96fed1b7a35932da
+          name: title
+          value: καθαρίστε τα παράθυρα
+          disabled: false
+        - id: pair_9f5d9ed763be4de1b982a3fb11462e39
+          name: description
+          value: καθαρίστε τα παράθυρα για να έχετε καλύτερη θέα
+          disabled: false
+        - id: pair_38353a2868054529827833a250224e1e
+          name: status
+          value: todo
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_aa16c0844a524a2494946c82c194d89f
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_60d15767ca51433c8edbc669bfe950c5
+      - id: pair_97c8bca8a78a4ef294e1415b3d5a94b1
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MTQ1NiwiZXhwIjoxNzQ5MTY1ODU2fQ.OlyXbllcfgX791_etPNN0VP_o-A9_EoMehhNz0VXI84
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/tasks/update/10
+    name: update task to englij - Admin
+    meta:
+      id: req_d910c2d9d19241c0b35939e10b86d9ae
+      created: 1749151667174
+      modified: 1749151798358
+      isPrivate: false
+      sortKey: -1749050039036.75
+    method: PATCH
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_0fa0498340a840a0a0ceda14af02a3cb
+          name: title
+          value: clean the windows
+          disabled: false
+        - id: pair_4e8fb9590c5e493593d2baa0f8925930
+          name: description
+          value: clean the windows so the view will be better
+          disabled: false
+        - id: pair_60b2541ce4fe47c083a5a6a1ce91f9ed
+          name: status
+          value: todo
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_02fe98d308c54a679040f93176d19589
+      - name: User-Agent
+        value: insomnia/11.1.0
+        id: pair_2371726d514f45639f3992baab78a0e4
+      - id: pair_b175af74e892436e88a6658a7dcd7be9
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MTQ1NiwiZXhwIjoxNzQ5MTY1ODU2fQ.OlyXbllcfgX791_etPNN0VP_o-A9_EoMehhNz0VXI84
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/users/all
+    name: get all users - Admin
+    meta:
+      id: req_2bf6d8b8faf5470f8e3e1001ab898422
+      created: 1749153078717
+      modified: 1749155192064
+      isPrivate: false
+      sortKey: -1749031641018.5
+    method: GET
+    headers:
+      - id: pair_a1da39e479aa4a028d31539cb4d929fc
+        name: Content-Type
+        value: application/x-www-form-urlencoded
+        disabled: false
+      - id: pair_a2cccd564fe949fe9230c6f0bfa6194a
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
+        disabled: false
     settings:
       renderRequestBody: true
       encodeUrl: true
