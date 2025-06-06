@@ -6,11 +6,8 @@ import { JwtStrategy } from './strategy';
 import { PrismaSqlModule } from 'src/prisma-sql/prisma-sql.module';
 
 @Module({
-    imports:        [
-                        PrismaSqlModule, 
-                        JwtModule.register({})
-                    ],
-    controllers:    [AuthController],
-    providers:      [AuthService, JwtStrategy],
-}) 
+  imports: [PrismaSqlModule, JwtModule.register({})],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+})
 export class AuthModule {}

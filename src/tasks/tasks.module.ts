@@ -5,8 +5,8 @@ import { TasksController } from './tasks.controller';
 import { PrismaSqlModule } from 'src/prisma-sql/prisma-sql.module';
 
 @Module({
-  imports:      [PrismaSqlModule],
-  providers:    [TasksService],
-  controllers:  [TasksController]
+  imports: [PrismaSqlModule],
+  providers: [TasksService],
+  controllers: [TasksController],
 })
 export class TasksModule {}

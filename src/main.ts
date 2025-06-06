@@ -5,9 +5,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-const config = new DocumentBuilder()
+  const config = new DocumentBuilder()
     .setTitle('Task Management API')
-    .setDescription('Provides edndpoints for creating, updating, getting and removing tasks by authenticated users')
+    .setDescription(
+      'Provides edndpoints for creating, updating, getting and removing tasks by authenticated users',
+    )
     .setVersion('1.0')
     .addTag('Modules')
     .build();

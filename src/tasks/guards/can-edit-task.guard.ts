@@ -6,23 +6,20 @@ import { Role } from 'src/auth/enum';
 
 @Injectable()
 export class CanEditTaskGuard implements CanActivate {
-  constructor(private reflector: Reflector, private tasksService: TasksService) {}
+  constructor(
+    private reflector: Reflector,
+    private tasksService: TasksService,
+  ) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> 
-  {
-    console.log("CanEditTaskGuard")
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    console.log('CanEditTaskGuard');
     const isProtected = this.reflector.get<boolean>(CAN_EDIT_TASK, context.getHandler());
     if (!isProtected) return true;
 
     const req = context.switchToHttp().getRequest();
-
-    // console.log(req)
-    
     const user = req.user;
-    console.log(user)
     const taskId = req.params.id;
 
-    console.log(taskId)
     const taskOwnerId = await this.tasksService.getUserIdForTask(+taskId);
 
     if (!taskOwnerId) throw new ForbiddenException('Task not found');
@@ -31,7 +28,7 @@ export class CanEditTaskGuard implements CanActivate {
     if (user.role === Role.Admin) return true;
 
     // Only owner can edit
-    console.log(taskOwnerId, user.id)
+    console.log(taskOwnerId, user.id);
     if (taskOwnerId === user.id) return true;
 
     throw new ForbiddenException('You cannot edit this task');
