@@ -16,11 +16,12 @@ datasource db {
 
 // User (id, username, password (hash-uită), email, role)
 model User {
-  id       Int    @id @default(autoincrement())
-  username String
-  password String
-  email    String
-  role     String
+  id           Int    @id @default(autoincrement())
+  username     String
+  password     String
+  email        String
+  role         String
+  refreshToken String @default("")
 }
 
 // Task (id, title, description, status (de ex., 'todo', 'in-progress', 'done'), userId (cheie externă către User))

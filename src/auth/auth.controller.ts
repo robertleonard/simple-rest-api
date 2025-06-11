@@ -1,7 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
+import { CheckCredentialsGuard } from './guard';
 
 // Controller is dealing with the logic for the requests: post, get, etc
 @Controller('auth')
@@ -25,7 +26,18 @@ export class AuthController {
   }
 
   @Post('signin')
-  signin(@Body() signInDto: SignInDto) {
-    return this.authService.signin(signInDto.username, signInDto.password);
+  @UseGuards(CheckCredentialsGuard)
+  signin(
+    // @Body() signInDto: SignInDto,
+    @Request() req
+  ) 
+  {
+    return this.authService.signin(req.user/*signInDto.username, signInDto.password*/);
   }
+
+  @Post('refresh')
+  async refresh(@Body() body: {refreshToken: string}) {
+    return this.authService.refreshTokens(body.refreshToken)
+  }
+
 }

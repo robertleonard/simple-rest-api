@@ -21,6 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: { sub: number; email: string }) {
+    console.log(payload)
     const userPromise = await this.prismaSqlService.user.findUnique({
       where: { id: payload.sub },
     });
@@ -28,6 +29,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // !!!
     // TODO: make this work - it gives the error: The operand of a 'delete' operator must be optional.ts(2790)
     // delete userPromise?.password;
+    
+    // Using userPromise as any in order to force delete the password field without getting the TS error
+    delete (userPromise as any).password;
+    console.log(userPromise)
 
     return userPromise;
   }

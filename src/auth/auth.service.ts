@@ -1,8 +1,9 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 import { ConfigService } from '@nestjs/config';
+import { retry } from 'rxjs';
 
 @Injectable({})
 export class AuthService {
@@ -30,33 +31,114 @@ export class AuthService {
     return { msg: 'I have signed up' };
   }
 
-  async signin(loginUsername: string, loginPassword: string): Promise<{ access_token: string }> {
-    const user = await this.prismaSqlService.user.findFirst({
-      where: {
-        username: loginUsername,
-      },
-    });
 
-    if (user?.password) {
-      if (!(await bcrypt.compare(loginPassword, user.password))) {
+  async validateUserLogin(
+    loginUsername: string,
+    loginPassword: string
+  ) : Promise<any>
+  {
+      const user = await this.prismaSqlService.user.findFirst({
+        where: {
+          username: loginUsername,
+        },
+      });
+      if (!user) throw new UnauthorizedException();
+
+      if (user.password) {
+        if (!(await bcrypt.compare(loginPassword, user.password))) {
+          throw new UnauthorizedException();
+        }
+      } else {
         throw new UnauthorizedException();
       }
-    } else {
-      throw new UnauthorizedException();
-    }
 
-    return { access_token: await this.signToken(user.id, user.username) };
+      const { password, ...result } = user; // remove password
+      return result
+  }
+
+  async signin(user: any)
+  : Promise<{ access_token: string, refresh_token: string }> 
+  {
+    // const user = await this.prismaSqlService.user.findFirst({
+    //   where: {
+    //     username: loginUsername,
+    //   },
+    // });
+
+    // if (user?.password) {
+    //   if (!(await bcrypt.compare(loginPassword, user.password))) {
+    //     throw new UnauthorizedException();
+    //   }
+    // } else {
+    //   throw new UnauthorizedException();
+    // }
+
+    console.log("\nauth.service.ts::singin(): "+user)
+    const accessToken = await this.signToken(user.id, user.username);
+    const refreshToken = await this.signRefreshToken(user.id, user.username);
+
+    await this.saveRefreshToken(user.id, refreshToken);
+
+    return {access_token: accessToken, refresh_token: refreshToken}
+    // return { access_token: await this.signToken(user.id, user.username) };
   }
 
   async signToken(userId: number, username: string): Promise<string> {
     const payload = {
       sub: userId,
-      username,
+      username
     };
 
     return this.jwtService.signAsync(payload, {
-      expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
-      secret: this.configService.get('JWT_SECRET'),
+        expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
+        secret: this.configService.get('JWT_SECRET'),
     });
   }
+
+  async signRefreshToken(userId: number, username: string) : Promise<string> {
+    const payload = {
+      sub: userId,
+      username
+    }
+
+    return this.jwtService.signAsync(payload, {
+        expiresIn: this.configService.get('TOKEN_REFRESH_EXPIRE_TIME'),
+        secret: this.configService.get('JWT_REFRESH_SECRET')
+    })
+  }
+
+  async saveRefreshToken(userId: number, refreshToken: string) {
+
+    const hashedToken = await bcrypt.hash(refreshToken, 10)
+    this.prismaSqlService.user.update({
+      where:  { id: userId },
+      data:   { refreshToken: hashedToken }
+    })
+
+  }
+
+
+  async refreshTokens(refreshToken: string)
+  {
+
+    try {
+      const payload = await this.jwtService.verifyAsync(refreshToken, {secret: this.configService.get('JWT_REFRESH_SECRET')})
+
+      const user = await this.prismaSqlService.user.findUnique({ where: { id: payload.sub } })
+
+      if (!user || !(user.refreshToken)) throw new ForbiddenException("Access Denied")
+
+      return this.signin(user)
+    }
+    catch(error)
+    {
+      throw new ForbiddenException('Invalid Token')
+    }
+
+
+  }
+
+
+
+
 }

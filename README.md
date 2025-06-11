@@ -73,6 +73,16 @@ It should automatically open a browser with a frendly interface, otherwhise go t
 npx prisma studio
 ```
 
+## .env content example
+
+```bash
+DATABASE_URL="postgresql://postgres:123@localhost:5434/nest?schema=public"
+JWT_SECRET="zzoooooper-zzeeeekreeeett"
+JWT_REFRESH_SECRET="zzoooooper-zzeeeekreeeett-revreeej"
+TOKEN_EXPIRE_TIME="5m"
+TOKEN_REFRESH_EXPIRE_TIME="12h"
+```
+
 ## Run tests
 
 There are no tests written at this point

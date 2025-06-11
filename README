@@ -85,6 +85,9 @@ npm install --save-dev @types/passport-local
 npm install --save passport-jwt
 npm install --save-dev @types/passport-jwt
 
+npm install passport-local
+npm install @types/passport-local --save-dev
+
 
 ### Install validator class
 npm install class-validator class-transformer
