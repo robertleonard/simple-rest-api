@@ -73,7 +73,6 @@ export class AuthService {
     //   throw new UnauthorizedException();
     // }
 
-    console.log("\nauth.service.ts::singin(): "+user)
     const accessToken = await this.signToken(user.id, user.username);
     const refreshToken = await this.signRefreshToken(user.id, user.username);
 
@@ -110,7 +109,7 @@ export class AuthService {
   async saveRefreshToken(userId: number, refreshToken: string) {
 
     const hashedToken = await bcrypt.hash(refreshToken, 10)
-    this.prismaSqlService.user.update({
+    const user = await this.prismaSqlService.user.update({
       where:  { id: userId },
       data:   { refreshToken: hashedToken }
     })
@@ -121,12 +120,13 @@ export class AuthService {
   async refreshTokens(refreshToken: string)
   {
 
-    try {
+    try {      
       const payload = await this.jwtService.verifyAsync(refreshToken, {secret: this.configService.get('JWT_REFRESH_SECRET')})
-
       const user = await this.prismaSqlService.user.findUnique({ where: { id: payload.sub } })
 
-      if (!user || !(user.refreshToken)) throw new ForbiddenException("Access Denied")
+      if (!user || !(user.refreshToken)) {
+        throw new ForbiddenException("Access Denied")
+      }
 
       return this.signin(user)
     }

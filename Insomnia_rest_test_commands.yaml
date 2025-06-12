@@ -4,6 +4,7 @@ meta:
   id: wrk_scratchpad
   created: 1748807053946
   modified: 1748807053946
+  description: ""
 collection:
   - url: http://localhost:3000/auth/signup
     name: sign up
@@ -12,6 +13,7 @@ collection:
       created: 1748807091110
       modified: 1749135362001
       isPrivate: false
+      description: ""
       sortKey: -1748807091110
     method: POST
     body:
@@ -20,18 +22,22 @@ collection:
         - id: pair_91569b347f46497d9ac1f39b2883d6a5
           name: username
           value: robert.adminu.4
+          description: ""
           disabled: false
         - id: pair_52ae1e04f10842cfa5b5d244a54f1549
           name: email
           value: leon.adminu.4@gmail.com
+          description: ""
           disabled: false
         - id: pair_26d23355eba7459c85b9aaeaf037be08
           name: password
           value: Parola123@
+          description: ""
           disabled: false
         - id: pair_2ce715c408854e41b7095e5ca02719a3
           name: role
           value: admin
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -53,6 +59,7 @@ collection:
       created: 1748807243052
       modified: 1749066549413
       isPrivate: false
+      description: ""
       sortKey: -1748892321559
     method: POST
     body:
@@ -61,10 +68,12 @@ collection:
         - id: pair_2b9c86a1d83e452dba09e3a7687db755
           name: username
           value: robert.leon.3
+          description: ""
           disabled: false
         - id: pair_56f81175d01c4d18a8d458f6e46d2f51
           name: password
           value: Parola123@
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -86,17 +95,20 @@ collection:
       created: 1748977400066
       modified: 1749153294322
       isPrivate: false
+      description: ""
       sortKey: -1748977400066
     method: GET
     headers:
       - id: pair_a26e1b90fea8499e965c00b3e8e6ba93
         name: Content-Type
         value: application/x-www-form-urlencoded
+        description: ""
         disabled: false
       - id: pair_ff8156d752a241d1b32070b6b875a971
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MDkyNiwiZXhwIjoxNzQ5MTY1MzI2fQ.8NwLahWwvl585ZiWSDTpchf0qN10C9HdFeejVR_cqIE
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -113,6 +125,7 @@ collection:
       created: 1749049721336
       modified: 1749072966625
       isPrivate: false
+      description: ""
       sortKey: -1749049721336
     method: POST
     body:
@@ -121,28 +134,34 @@ collection:
         - id: pair_79c104626f064e61a420c73d7b79dd41
           name: title
           value: clean the windows
+          description: ""
           disabled: false
         - id: pair_084667ca84ab4507801ab071dec2784c
           name: description
           value: clean the windows so the view will be better
+          description: ""
           disabled: false
         - id: pair_6ea08e9122ab41a59b25234d340448ae
           name: status
           value: in-progress
+          description: ""
           disabled: false
         - id: pair_b21c51adb6264656ade7f99b1471d870
           name: userId
           value: "4"
+          description: ""
           disabled: true
     headers:
       - id: pair_938a3b5cc452461388fbdf0cf16caba6
         name: Content-Type
         value: application/x-www-form-urlencoded
+        description: ""
         disabled: false
       - id: pair_69374f0f6d81442f91fd6b03a55508b3
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -159,6 +178,7 @@ collection:
       created: 1749050144937
       modified: 1749151702267
       isPrivate: false
+      description: ""
       sortKey: -1749050144937
     method: PATCH
     body:
@@ -167,22 +187,27 @@ collection:
         - id: pair_53d90b490a5c467aa783abf678c73013
           name: id
           value: "1"
+          description: ""
           disabled: true
         - id: pair_44253790c60345dd985867357d846f30
           name: title
           value: clin za windowz
+          description: ""
           disabled: false
         - id: pair_e4b6d5ead99d4c4b9cecefe846cf7a8e
           name: description
           value: clin za windowz so za veew will vee braizar
+          description: ""
           disabled: false
         - id: pair_65ad39cff5b346dca142fb890030c1bb
           name: status
           value: todo
+          description: ""
           disabled: false
         - id: pair_cfeaaca9f5b34337b4542ad22a2472e4
           name: userId
           value: "8"
+          description: ""
           disabled: true
     headers:
       - name: Content-Type
@@ -195,6 +220,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -211,6 +237,7 @@ collection:
       created: 1749050385292
       modified: 1749151694637
       isPrivate: false
+      description: ""
       sortKey: -1749050385292
     method: PATCH
     body:
@@ -219,22 +246,27 @@ collection:
         - id: pair_83e0823a98284231bd9fd12e54264b99
           name: id
           value: "100"
+          description: ""
           disabled: true
         - id: pair_1f04a5ce9dac4a6bb81cdc0b76bf05a3
           name: title
           value: clean the windows
+          description: ""
           disabled: false
         - id: pair_e03e57010b054cae927cc1a7e675ff06
           name: description
           value: clean the windows so the view will be better
+          description: ""
           disabled: false
         - id: pair_88680c7d22a24573a50c25bc5d2fc53a
           name: status
           value: todo
+          description: ""
           disabled: false
         - id: pair_3832a6706c78491999c95936677bca83
           name: userId
           value: "4"
+          description: ""
           disabled: true
     headers:
       - name: Content-Type
@@ -247,6 +279,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -263,6 +296,7 @@ collection:
       created: 1749052008442
       modified: 1749072008580
       isPrivate: false
+      description: ""
       sortKey: -1749052008442
     method: DELETE
     headers:
@@ -272,11 +306,13 @@ collection:
       - id: pair_f0627523a4b7442499096bb34c6a126c
         name: Content-Type
         value: application/x-www-form-urlencoded
+        description: ""
         disabled: false
       - id: pair_27ffb200c8184bb2b341ce8e9e26d4ef
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -293,6 +329,7 @@ collection:
       created: 1749052221919
       modified: 1749072022282
       isPrivate: false
+      description: ""
       sortKey: -1749052221919
     method: DELETE
     body:
@@ -301,6 +338,7 @@ collection:
         - id: pair_e1912b0c654b40dc9b1887e9cf150311
           name: userId
           value: "4"
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -313,6 +351,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuMiIsImlhdCI6MTc0OTA3MTk0MCwiZXhwIjoxNzQ5MDc1NTQwfQ.Gruu_BmFAS3AMhwRaSjaJq0OL76t3iIuR9sd3WUzyaU
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -327,8 +366,9 @@ collection:
     meta:
       id: req_75382306f24548d9b77f73606a2d0f6a
       created: 1749053638222
-      modified: 1749146004087
+      modified: 1749729018628
       isPrivate: false
+      description: ""
       sortKey: -1749053638222
     method: GET
     headers:
@@ -338,11 +378,13 @@ collection:
       - id: pair_e139bce175b54a17b1dfd080af40d42f
         name: Content-Type
         value: application/x-www-form-urlencoded
+        description: ""
         disabled: false
       - id: pair_eea930e421f74c709eadb6c98fd538f3
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NTk3NiwiZXhwIjoxNzQ5MTYwMzc2fQ.JnmG8hAYwDM0laPyz4WdfX9c3E2iO7GVkrKWE3_NHok
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTcyODkzMiwiZXhwIjoxNzQ5NzI5MjMyfQ.-PjuHssKblCRyx9cwML_oEYlTi0nxBoBsUYSneWb_Ys
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -357,8 +399,9 @@ collection:
     meta:
       id: req_be6cd66435f842f9ab5e9b7754686e3a
       created: 1749053657410
-      modified: 1749147316164
+      modified: 1749733015282
       isPrivate: false
+      description: ""
       sortKey: -1749053657410
     method: GET
     body:
@@ -367,6 +410,7 @@ collection:
         - id: pair_c844e68199d34960af5a28f606ec0805
           name: userId
           value: "10"
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -378,7 +422,8 @@ collection:
       - id: pair_4321c7daa60a4aba9076a697eb94f1fc
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NzMwMiwiZXhwIjoxNzQ5MTYxNzAyfQ.09tlHuBpn8Jz8R4VGgPm-i-8LN1HzrncdSR3Dvoh-G8
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTczMjk5NiwiZXhwIjoxNzQ5NzMzNTk2fQ.esocyPuJCb4oKd_DBPWd2dRwIfwrXHra2lHfE-WvSYM
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -395,6 +440,7 @@ collection:
       created: 1749066558199
       modified: 1749135385058
       isPrivate: false
+      description: ""
       sortKey: -1748849706334.5
     method: POST
     body:
@@ -403,10 +449,12 @@ collection:
         - id: pair_648ea9a4a979414d86c75ce3ed435682
           name: username
           value: robert.adminu.4
+          description: ""
           disabled: false
         - id: pair_178d2e77fc6946548b885f40e11b06cd
           name: password
           value: Parola123@
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -428,6 +476,7 @@ collection:
       created: 1749148272776
       modified: 1749148311735
       isPrivate: false
+      description: ""
       sortKey: -1748934860812.5
     method: DELETE
     headers:
@@ -438,6 +487,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE0NzMwMiwiZXhwIjoxNzQ5MTYxNzAyfQ.09tlHuBpn8Jz8R4VGgPm-i-8LN1HzrncdSR3Dvoh-G8
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -454,6 +504,7 @@ collection:
       created: 1749151270508
       modified: 1749151636579
       isPrivate: false
+      description: ""
       sortKey: -1749049933136.5
     method: PATCH
     body:
@@ -462,14 +513,17 @@ collection:
         - id: pair_7a6623029fcf48ba96fed1b7a35932da
           name: title
           value: καθαρίστε τα παράθυρα
+          description: ""
           disabled: false
         - id: pair_9f5d9ed763be4de1b982a3fb11462e39
           name: description
           value: καθαρίστε τα παράθυρα για να έχετε καλύτερη θέα
+          description: ""
           disabled: false
         - id: pair_38353a2868054529827833a250224e1e
           name: status
           value: todo
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -482,6 +536,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MTQ1NiwiZXhwIjoxNzQ5MTY1ODU2fQ.OlyXbllcfgX791_etPNN0VP_o-A9_EoMehhNz0VXI84
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -498,6 +553,7 @@ collection:
       created: 1749151667174
       modified: 1749151798358
       isPrivate: false
+      description: ""
       sortKey: -1749050039036.75
     method: PATCH
     body:
@@ -506,14 +562,17 @@ collection:
         - id: pair_0fa0498340a840a0a0ceda14af02a3cb
           name: title
           value: clean the windows
+          description: ""
           disabled: false
         - id: pair_4e8fb9590c5e493593d2baa0f8925930
           name: description
           value: clean the windows so the view will be better
+          description: ""
           disabled: false
         - id: pair_60b2541ce4fe47c083a5a6a1ce91f9ed
           name: status
           value: todo
+          description: ""
           disabled: false
     headers:
       - name: Content-Type
@@ -526,6 +585,7 @@ collection:
         name: Authorization
         value: Bearer
           eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTE1MTQ1NiwiZXhwIjoxNzQ5MTY1ODU2fQ.OlyXbllcfgX791_etPNN0VP_o-A9_EoMehhNz0VXI84
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true
@@ -540,19 +600,61 @@ collection:
     meta:
       id: req_2bf6d8b8faf5470f8e3e1001ab898422
       created: 1749153078717
-      modified: 1749155192064
+      modified: 1749213063697
       isPrivate: false
+      description: ""
       sortKey: -1749031641018.5
     method: GET
     headers:
       - id: pair_a1da39e479aa4a028d31539cb4d929fc
         name: Content-Type
         value: application/x-www-form-urlencoded
+        description: ""
         disabled: false
       - id: pair_a2cccd564fe949fe9230c6f0bfa6194a
         name: Authorization
         value: Bearer
-          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTE1MTU0MCwiZXhwIjoxNzQ5MTY1OTQwfQ.tbXojSOqBT5cLEmU6oyk9FqoJxtm2piLpnPRRoHHvWk
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyLCJ1c2VybmFtZSI6InJvYmVydC5hZG1pbnUuNCIsImlhdCI6MTc0OTIxMzA0OSwiZXhwIjoxNzQ5MjI3NDQ5fQ.1f6jNhy-OnvlwvDlAG2tEBxtVT8Ve2bVRbRasVTwUHo
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:3000/auth/refresh
+    name: refresh token
+    meta:
+      id: req_4d0615c123fe4a4494f06016be09080c
+      created: 1749653998394
+      modified: 1749732994799
+      isPrivate: false
+      description: ""
+      sortKey: -1748913591185.75
+    method: POST
+    body:
+      mimeType: application/x-www-form-urlencoded
+      params:
+        - id: pair_3b6d4f7f1b924a02827989afb5716f82
+          name: refreshToken
+          value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTczMjE2NiwiZXhwIjoxNzQ5Nzc1MzY2fQ.f0D4rit6IfbS6As-_sdpFxlPk0osCUoFyig4S8ViDTA
+          description: ""
+          disabled: false
+    headers:
+      - name: Content-Type
+        value: application/x-www-form-urlencoded
+        id: pair_46fb64ffe21e450c82bd4fe8c68e1ff7
+      - name: User-Agent
+        value: insomnia/11.2.0
+        id: pair_c1dc3b1391d14a4587a2726a64d506c5
+      - id: pair_7111c88792de4ea692dfd5200e6b98d6
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsInVzZXJuYW1lIjoicm9iZXJ0Lmxlb24uMyIsImlhdCI6MTc0OTcyODkzMiwiZXhwIjoxNzQ5NzcyMTMyfQ.5frGp-BMk2szb_CSl2028fq-htIbpnF45K1LBDGbsa0
+        description: ""
         disabled: false
     settings:
       renderRequestBody: true

@@ -21,7 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: { sub: number; email: string }) {
-    console.log(payload)
     const userPromise = await this.prismaSqlService.user.findUnique({
       where: { id: payload.sub },
     });
@@ -32,7 +31,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     
     // Using userPromise as any in order to force delete the password field without getting the TS error
     delete (userPromise as any).password;
-    console.log(userPromise)
 
     return userPromise;
   }
