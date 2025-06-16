@@ -31,99 +31,81 @@ export class AuthService {
     return { msg: 'I have signed up' };
   }
 
+  async validateUserLogin(loginUsername: string, loginPassword: string): Promise<any> {
+    const user = await this.prismaSqlService.user.findFirst({
+      where: {
+        username: loginUsername,
+      },
+    });
+    if (!user) throw new UnauthorizedException();
 
-  async validateUserLogin(
-    loginUsername: string,
-    loginPassword: string
-  ) : Promise<any>
-  {
-      const user = await this.prismaSqlService.user.findFirst({
-        where: {
-          username: loginUsername,
-        },
-      });
-      if (!user) throw new UnauthorizedException();
-
-      if (user.password) {
-        if (!(await bcrypt.compare(loginPassword, user.password))) {
-          throw new UnauthorizedException();
-        }
-      } else {
+    if (user.password) {
+      if (!(await bcrypt.compare(loginPassword, user.password))) {
         throw new UnauthorizedException();
       }
+    } else {
+      throw new UnauthorizedException();
+    }
 
-      const { password, ...result } = user; // remove password
-      return result
+    const { password, ...result } = user; // remove password
+    return result;
   }
 
-  async signin(user: any)
-  : Promise<{ access_token: string, refresh_token: string }> 
-  {
+  async signin(user: any): Promise<{ access_token: string; refresh_token: string }> {
     const accessToken = await this.signToken(user.id, user.username);
     const refreshToken = await this.signRefreshToken(user.id, user.username);
 
     await this.saveRefreshToken(user.id, refreshToken);
 
-    return {access_token: accessToken, refresh_token: refreshToken}
+    return { access_token: accessToken, refresh_token: refreshToken };
   }
 
   async signToken(userId: number, username: string): Promise<string> {
     const payload = {
       sub: userId,
-      username
+      username,
     };
 
     return this.jwtService.signAsync(payload, {
-        expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
-        secret: this.configService.get('JWT_SECRET'),
+      expiresIn: this.configService.get('TOKEN_EXPIRE_TIME'),
+      secret: this.configService.get('JWT_SECRET'),
     });
   }
 
-  async signRefreshToken(userId: number, username: string) : Promise<string> {
+  async signRefreshToken(userId: number, username: string): Promise<string> {
     const payload = {
       sub: userId,
-      username
-    }
+      username,
+    };
 
     return this.jwtService.signAsync(payload, {
-        expiresIn: this.configService.get('TOKEN_REFRESH_EXPIRE_TIME'),
-        secret: this.configService.get('JWT_REFRESH_SECRET')
-    })
+      expiresIn: this.configService.get('TOKEN_REFRESH_EXPIRE_TIME'),
+      secret: this.configService.get('JWT_REFRESH_SECRET'),
+    });
   }
 
   async saveRefreshToken(userId: number, refreshToken: string) {
-
-    const hashedToken = await bcrypt.hash(refreshToken, 10)
+    const hashedToken = await bcrypt.hash(refreshToken, 10);
     const user = await this.prismaSqlService.user.update({
-      where:  { id: userId },
-      data:   { refreshToken: hashedToken }
-    })
-
+      where: { id: userId },
+      data: { refreshToken: hashedToken },
+    });
   }
 
+  async refreshTokens(refreshToken: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(refreshToken, {
+        secret: this.configService.get('JWT_REFRESH_SECRET'),
+      });
+      const user = await this.prismaSqlService.user.findUnique({ where: { id: payload.sub } });
 
-  async refreshTokens(refreshToken: string)
-  {
-
-    try {      
-      const payload = await this.jwtService.verifyAsync(refreshToken, {secret: this.configService.get('JWT_REFRESH_SECRET')})
-      const user = await this.prismaSqlService.user.findUnique({ where: { id: payload.sub } })
-
-      if (!user || !(user.refreshToken)) {
-        throw new ForbiddenException("Access Denied")
+      if (!user || !user.refreshToken) {
+        throw new ForbiddenException('Access Denied');
       }
 
-      return this.signin(user)
+      return this.signin(user);
+    } catch (error) {
+      throw new ForbiddenException('Invalid Token');
     }
-    catch(error)
-    {
-      throw new ForbiddenException('Invalid Token')
-    }
-
-
   }
-
-
-
-
 }

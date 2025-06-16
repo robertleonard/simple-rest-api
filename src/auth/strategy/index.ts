@@ -1,2 +1,2 @@
 export * from './jwt.strategy';
-export * from './check-credentials.strategy'
+export * from './check-credentials.strategy';

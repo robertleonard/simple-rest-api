@@ -20,17 +20,12 @@ export class AuthController {
 
   @Post('signin')
   @UseGuards(CheckCredentialsGuard)
-  signin(
-    @Request() req
-  )
-  {
+  signin(@Request() req) {
     return this.authService.signin(req.user);
   }
 
   @Post('refresh')
-  async refresh(@Body() body: {refreshToken: string}) {
-
-    return this.authService.refreshTokens(body.refreshToken)
+  async refresh(@Body() body: { refreshToken: string }) {
+    return this.authService.refreshTokens(body.refreshToken);
   }
-
 }
