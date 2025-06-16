@@ -3,7 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 import { ConfigService } from '@nestjs/config';
-// import { Strategy } from "passport-local";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -12,7 +11,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private prismaSqlService: PrismaSqlService,
     private configService: ConfigService,
   ) {
-    const jwtSecret = configService.get('JWT_SECRET');
+    const jwtSecret: string = configService.get('JWT_SECRET') as string;
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -26,8 +25,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
 
     // Using userPromise as any in order to force delete the password field without getting the TS error
-    delete (userPromise as any).password;
-
-    return userPromise;
+    if (userPromise?.password) {
+      delete (userPromise as any).password;
+    }
+    return userPromise; // will be attached to req.user
   }
 }

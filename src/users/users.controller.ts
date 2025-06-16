@@ -1,11 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from 'src/auth/guard';
 import { CanGetUserGuard } from './guards/can-get-user.guard';
 import { CanGetUser } from './decorators/can-get-user.decorator';
 import { Roles } from 'src/auth/decorator';
 import { Role } from 'src/auth/enum';
-import { RolesGuard } from 'src/auth/guard/roles.guard';
+import { RolesGuard } from 'src/users/guards/roles.guard';
 
 @Controller('users')
 export class UsersController {
@@ -18,7 +18,7 @@ export class UsersController {
   @Get('user/:id')
   @UseGuards(JwtAuthGuard, CanGetUserGuard)
   @CanGetUser()
-  getUser(@Param('id') userId) {
+  getUser(@Param('id') userId: string) {
     return this.usersService.getUserById(userId);
   }
 

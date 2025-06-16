@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 import { ConfigService } from '@nestjs/config';
-import { retry } from 'rxjs';
+import { UserDto } from '../users/dto/user.dto';
 
 @Injectable({})
 export class AuthService {
@@ -31,7 +31,7 @@ export class AuthService {
     return { msg: 'I have signed up' };
   }
 
-  async validateUserLogin(loginUsername: string, loginPassword: string): Promise<any> {
+  async validateUserLogin(loginUsername: string, loginPassword: string): Promise<UserDto> {
     const user = await this.prismaSqlService.user.findFirst({
       where: {
         username: loginUsername,
@@ -47,15 +47,18 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    const { password, ...result } = user; // remove password
+    const { password, refreshToken, email, role, ...result } = user; // remove password
     return result;
   }
 
-  async signin(user: any): Promise<{ access_token: string; refresh_token: string }> {
-    const accessToken = await this.signToken(user.id, user.username);
-    const refreshToken = await this.signRefreshToken(user.id, user.username);
+  async signin(
+    userId: number,
+    username: string,
+  ): Promise<{ access_token: string; refresh_token: string }> {
+    const accessToken = await this.signToken(userId, username);
+    const refreshToken = await this.signRefreshToken(userId, username);
 
-    await this.saveRefreshToken(user.id, refreshToken);
+    await this.saveRefreshToken(userId, refreshToken);
 
     return { access_token: accessToken, refresh_token: refreshToken };
   }
@@ -103,7 +106,7 @@ export class AuthService {
         throw new ForbiddenException('Access Denied');
       }
 
-      return this.signin(user);
+      return this.signin(user.id, user.username);
     } catch (error) {
       throw new ForbiddenException('Invalid Token');
     }
