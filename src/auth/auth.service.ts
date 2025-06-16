@@ -59,27 +59,12 @@ export class AuthService {
   async signin(user: any)
   : Promise<{ access_token: string, refresh_token: string }> 
   {
-    // const user = await this.prismaSqlService.user.findFirst({
-    //   where: {
-    //     username: loginUsername,
-    //   },
-    // });
-
-    // if (user?.password) {
-    //   if (!(await bcrypt.compare(loginPassword, user.password))) {
-    //     throw new UnauthorizedException();
-    //   }
-    // } else {
-    //   throw new UnauthorizedException();
-    // }
-
     const accessToken = await this.signToken(user.id, user.username);
     const refreshToken = await this.signRefreshToken(user.id, user.username);
 
     await this.saveRefreshToken(user.id, refreshToken);
 
     return {access_token: accessToken, refresh_token: refreshToken}
-    // return { access_token: await this.signToken(user.id, user.username) };
   }
 
   async signToken(userId: number, username: string): Promise<string> {

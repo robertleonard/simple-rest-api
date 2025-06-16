@@ -62,8 +62,6 @@ export class TasksService {
       },
     });
 
-    console.log({ userTasks });
-
     return userTasks;
   }
 
@@ -74,7 +72,6 @@ export class TasksService {
       },
     });
 
-    console.log({ task });
     return task;
   }
 }

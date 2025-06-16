@@ -4,15 +4,8 @@ import { SignUpDto } from './dto/signup.dto';
 import { SignInDto } from './dto/signin.dto';
 import { CheckCredentialsGuard } from './guard';
 
-// Controller is dealing with the logic for the requests: post, get, etc
 @Controller('auth')
 export class AuthController {
-  // using dependency injection
-  // in order to not instantiate the AuthService class like this:
-  //      authService: AuthService;
-  //      constructor(private authService: AuthService) {
-  //          this.authService = authService
-  //      }
   constructor(private authService: AuthService) {}
 
   @Post('signup')
@@ -28,11 +21,10 @@ export class AuthController {
   @Post('signin')
   @UseGuards(CheckCredentialsGuard)
   signin(
-    // @Body() signInDto: SignInDto,
     @Request() req
-  ) 
+  )
   {
-    return this.authService.signin(req.user/*signInDto.username, signInDto.password*/);
+    return this.authService.signin(req.user);
   }
 
   @Post('refresh')

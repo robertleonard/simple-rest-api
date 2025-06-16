@@ -17,7 +17,6 @@ export class CanGetUserGuard implements CanActivate {
     if (!isProtected) return true;
 
     const req = context.switchToHttp().getRequest();
-    // console.log(req)
     const user = req.user;
     const getUserId = +req.params.id;
 

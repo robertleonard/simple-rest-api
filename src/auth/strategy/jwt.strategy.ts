@@ -25,10 +25,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       where: { id: payload.sub },
     });
 
-    // !!!
-    // TODO: make this work - it gives the error: The operand of a 'delete' operator must be optional.ts(2790)
-    // delete userPromise?.password;
-    
     // Using userPromise as any in order to force delete the password field without getting the TS error
     delete (userPromise as any).password;
 
