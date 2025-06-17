@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -6,7 +7,8 @@ import {
   Param,
   Patch,
   Post,
-  Request,
+  Req,
+  // Request,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -20,6 +22,13 @@ import { CanEditTask } from './decorators/can-edit-task.decorator';
 import { CanEditTaskGuard } from './guards/can-edit-task.guard';
 import { CanGetTaskListGuard } from './guards/can-get-task-list.guard';
 import { CanGetTaskList } from './decorators/can-get-task-list.decorator';
+import { UserDto } from 'src/users/dto/user.dto';
+import { Request } from 'express';
+import { GetTaskListDto } from './dto/get-task-list.dto';
+
+interface TaskRequest extends Request {
+  user: UserDto;
+}
 
 @Controller('tasks')
 export class TasksController {
@@ -30,7 +39,7 @@ export class TasksController {
   @Post('create')
   @UseGuards(JwtAuthGuard)
   @UsePipes(new ValidationPipe())
-  createTask(@Request() request, @Body() body: CreateTaskDto) {
+  createTask(@Req() request: TaskRequest, @Body() body: CreateTaskDto) {
     return this.tasksService.createTask(
       body.title,
       body.description ? body.description : '',
@@ -46,7 +55,7 @@ export class TasksController {
   @UseGuards(JwtAuthGuard, CanEditTaskGuard)
   @UsePipes(new ValidationPipe())
   @CanEditTask()
-  async updateTask(@Param('id') taskId: string, @Request() request, @Body() body: UpdateTaskDto) {
+  async updateTask(@Param('id') taskId: number, @Body() body: UpdateTaskDto) {
     return this.tasksService.updateTask(+taskId, body.title, body.description, body.status);
   }
 
@@ -64,13 +73,15 @@ export class TasksController {
   @Get('task-list')
   @UseGuards(JwtAuthGuard, CanGetTaskListGuard)
   @CanGetTaskList()
-  getTaskListForUser(@Request() request, @Body() body) {
-    if (request.user.role == Role.User) {
+  getTaskListForUser(@Req() request: TaskRequest, @Body() body: GetTaskListDto) {
+    const user: UserDto = request.user;
+    if (user.role === Role.User) {
       // get list of tasks that owns
       return this.tasksService.getTaskListForUser(request.user.id);
     }
     // get list of tasks for specified user id
-    return this.tasksService.getTaskListForUser(body.userId);
+    if (!body.userId) {return new BadRequestException('Bad userId in the body');}
+    return this.tasksService.getTaskListForUser(+body.userId);
   }
 
   // GET TASK
@@ -79,7 +90,7 @@ export class TasksController {
   @Get(':id')
   @UseGuards(JwtAuthGuard, CanEditTaskGuard)
   @CanEditTask()
-  getTask(@Param('id') taskId) {
-    return this.tasksService.getTaskById(taskId);
+  getTask(@Param('id') taskId: number) {
+    return this.tasksService.getTaskById(+taskId);
   }
 }

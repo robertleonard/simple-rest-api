@@ -5,16 +5,16 @@ import { PrismaSqlService } from 'src/prisma-sql/prisma-sql.service';
 export class TasksService {
   constructor(private prismaSqlService: PrismaSqlService) {}
 
-  async createTask(title: string, description: string, status: string, userId: string) {
+  async createTask(title: string, description: string, status: string, userId: number) {
     const task = await this.prismaSqlService.task.create({
       data: {
         title: title,
         description: description,
         status: status,
-        userId: +userId,
+        userId: userId,
       },
     });
-    return { msg: 'task created' };
+    return { msg: 'task created', task };
   }
 
   async updateTask(id: number, title?: string, description?: string, status?: string) {
@@ -28,7 +28,7 @@ export class TasksService {
         status: status,
       },
     });
-    return { msg: 'task updated' };
+    return { msg: 'task updated', task };
   }
 
   async getUserIdForTask(taskId: number) {
@@ -55,20 +55,20 @@ export class TasksService {
     return tasks;
   }
 
-  async getTaskListForUser(userId: string) {
+  async getTaskListForUser(userId: number) {
     const userTasks = await this.prismaSqlService.task.findMany({
       where: {
-        userId: +userId,
+        userId: userId,
       },
     });
 
     return userTasks;
   }
 
-  async getTaskById(taskId: string) {
+  async getTaskById(taskId: number) {
     const task = await this.prismaSqlService.task.findUnique({
       where: {
-        id: +taskId,
+        id: taskId,
       },
     });
 

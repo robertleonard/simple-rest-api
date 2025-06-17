@@ -1,34 +1,42 @@
-// @ts-check
-import eslint from '@eslint/js';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import globals from 'globals';
+import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default [
+  // Base JavaScript rules from ESLint
+  js.configs.recommended,
+
+  // TypeScript-specific rules
+  ...tseslint.configs.recommended,
+
   {
-    ignores: ['eslint.config.mjs'],
+    ignores: [
+      'node_modules/',
+      'dist/',
+      'coverage/',
+      '.turbo/',
+    ],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  eslintPluginPrettierRecommended,
+
   {
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.jest,
-      },
-      sourceType: 'commonjs',
+      parser: tseslint.parser,
       parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        project: './tsconfig.json',
+        sourceType: 'module',
       },
     },
-  },
-  {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      // ✅ Recommended common rules for TypeScript/NestJS
+      'no-console': 'warn',
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'eqeqeq': ['error', 'always'],
+      'curly': 'error',
+      'semi': ['error', 'always'],
+      'quotes': ['error', 'single'],
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
   },
-);
+];
