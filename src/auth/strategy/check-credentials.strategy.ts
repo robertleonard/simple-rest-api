@@ -12,7 +12,6 @@ export class CheckCredentialsStrategy extends PassportStrategy(Strategy) {
 
   async validate(username: string, password: string): Promise<UserDto> {
     const user: UserDto = await this.authService.validateUserLogin(username, password);
-    console.log(__filename, '\nuser: ', user);
 
     if (!user) {
       throw new UnauthorizedException();

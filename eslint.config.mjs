@@ -29,14 +29,16 @@ export default [
     rules: {
       // ✅ Recommended common rules for TypeScript/NestJS
       'no-console': 'warn',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      // 'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'eqeqeq': ['error', 'always'],
       'curly': 'error',
       'semi': ['error', 'always'],
       'quotes': ['error', 'single'],
       '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn'
     },
   },
 ];

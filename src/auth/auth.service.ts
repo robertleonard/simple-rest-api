@@ -28,7 +28,7 @@ export class AuthService {
       },
     });
 
-    return { msg: 'I have signed up' };
+    return { msg: 'User Created' };
   }
 
   async validateUserLogin(loginUsername: string, loginPassword: string): Promise<UserDto> {
@@ -108,7 +108,7 @@ export class AuthService {
 
       return this.signin(user.id, user.username);
     } catch (error) {
-      throw new ForbiddenException('Invalid Token');
+      throw new ForbiddenException('Invalid Token', error as string);
     }
   }
 }

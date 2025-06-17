@@ -14,7 +14,6 @@ export class CanEditTaskGuard implements CanActivate {
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    console.log('CanEditTaskGuard');
     const isProtected = this.reflector.get<boolean>(CAN_EDIT_TASK, context.getHandler());
     if (!isProtected) {return true;}
 
@@ -30,7 +29,6 @@ export class CanEditTaskGuard implements CanActivate {
     if (user.role === Role.Admin) {return true;}
 
     // Only owner can edit
-    console.log(taskOwnerId, user.id);
     if (taskOwnerId === user.id) {return true;}
 
     throw new ForbiddenException('You cannot edit this task');

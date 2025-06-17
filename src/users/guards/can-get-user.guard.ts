@@ -14,14 +14,12 @@ export class CanGetUserGuard implements CanActivate {
   ) {}
 
   canActivate(context: ExecutionContext): boolean {
-    console.log('CanGetUserGuard');
     const isProtected = this.reflector.get<boolean>(CAN_GET_USER, context.getHandler());
     if (!isProtected) {return true;}
 
     const req: Request = context.switchToHttp().getRequest();
     const user: UserDto = req.user as UserDto;
     const getUserId = +req.params.id;
-    // console.log(__filename, 'user: ', user);
 
     // Admins can edit everything
     if (user.role === Role.Admin) {return true;}
