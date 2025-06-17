@@ -80,7 +80,9 @@ export class TasksController {
       return this.tasksService.getTaskListForUser(request.user.id);
     }
     // get list of tasks for specified user id
-    if (!body.userId) {return new BadRequestException('Bad userId in the body');}
+    if (!body.userId) {
+      return new BadRequestException('Bad userId in the body');
+    }
     return this.tasksService.getTaskListForUser(+body.userId);
   }
 

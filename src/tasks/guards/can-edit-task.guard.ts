@@ -15,7 +15,9 @@ export class CanEditTaskGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isProtected = this.reflector.get<boolean>(CAN_EDIT_TASK, context.getHandler());
-    if (!isProtected) {return true;}
+    if (!isProtected) {
+      return true;
+    }
 
     const req: Request = context.switchToHttp().getRequest();
     const user: UserDto = req.user as UserDto;
@@ -23,13 +25,19 @@ export class CanEditTaskGuard implements CanActivate {
 
     const taskOwnerId = await this.tasksService.getUserIdForTask(+taskId);
 
-    if (!taskOwnerId) {throw new ForbiddenException('Task not found');}
+    if (!taskOwnerId) {
+      throw new ForbiddenException('Task not found');
+    }
 
     // Admins can edit everything
-    if (user.role === Role.Admin) {return true;}
+    if (user.role === Role.Admin) {
+      return true;
+    }
 
     // Only owner can edit
-    if (taskOwnerId === user.id) {return true;}
+    if (taskOwnerId === user.id) {
+      return true;
+    }
 
     throw new ForbiddenException('You cannot edit this task');
   }

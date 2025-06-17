@@ -37,7 +37,9 @@ export class AuthService {
         username: loginUsername,
       },
     });
-    if (!user) {throw new UnauthorizedException();}
+    if (!user) {
+      throw new UnauthorizedException();
+    }
 
     if (user.password) {
       if (!(await bcrypt.compare(loginPassword, user.password))) {
